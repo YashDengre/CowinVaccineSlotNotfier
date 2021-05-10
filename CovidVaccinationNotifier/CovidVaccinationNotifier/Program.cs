@@ -21,7 +21,7 @@ namespace CovidVaccinationNotifier
             };
             //ServiceBase.Run(ServicesToRun);
             var service = new VaccineNotifierService();
-            service.Start();
+             service.Start();
 
         }
     }

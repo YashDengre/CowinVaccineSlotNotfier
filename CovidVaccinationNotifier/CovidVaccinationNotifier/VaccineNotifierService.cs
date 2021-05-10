@@ -16,6 +16,9 @@ namespace CovidVaccinationNotifier
         private readonly ICowinAPIsFront _cowinAPIsFront;
         private readonly IMessageService _meesagaeService;
         private MessageRequest messageRequests;
+        private readonly List<string> mobileNumbers;
+        private List<string> nextDates;
+        private readonly string nextDays;
         public VaccineNotifierService()
         {
             isCallAPI = Convert.ToBoolean(ConfigurationManager.AppSettings["CALLAPI"]);
@@ -24,27 +27,35 @@ namespace CovidVaccinationNotifier
             district_id = ConfigurationManager.AppSettings["DISTRICT_ID"];
             _cowinAPIsFront = new CowinAPIsFront();
             _meesagaeService = new MessageService();
-
+            mobileNumbers = ConfigurationManager.AppSettings["MOBILENUMBERS"].Split(';').ToList();
+            nextDays = ConfigurationManager.AppSettings["NEXT_DAYS"];
+            BuildDates(Convert.ToInt32(nextDays));
         }
         public void Start()
         {
             while (isCallAPI)
             {
-                var findByPinResponse = _cowinAPIsFront.FindByPin(pincode, date);
-                if (findByPinResponse?.sessions?.Count > 0)
+                CowinVaccineSlotResponse findByDistrictResponse = null;
+                //var findByPinResponse = _cowinAPIsFront.FindByPin(pincode, date);
+                //if (findByPinResponse?.sessions?.Count > 0)
+                //{
+                //    CreateMessageRequest(findByPinResponse);
+                //}
+                foreach (var nDate in nextDates)
                 {
-                    CreateMessageRequest(findByPinResponse);
+                    findByDistrictResponse = _cowinAPIsFront.FindByDistrict(district_id, nDate);
+                    if (findByDistrictResponse?.sessions?.Count > 0)
+                    {
+                        CreateMessageRequest(findByDistrictResponse);
+                    }
                 }
-
-                var findByDistrictResponse = _cowinAPIsFront.FindByDistrict(district_id, date);
-                if (findByDistrictResponse?.sessions?.Count > 0)
-                {
-                    CreateMessageRequest(findByDistrictResponse);
-                }
-                if(messageRequests?.Messages?.Count>0)
+                if (messageRequests?.Messages?.Count>0)
                 {
                     _meesagaeService.SendMessages(messageRequests);
                 }
+
+                //messageRequests.Dispose();
+                
             }
         }
         public void Stop()
@@ -67,19 +78,36 @@ namespace CovidVaccinationNotifier
             {
                 foreach (var session in response.sessions)
                 {
-                    if (session.min_age_limit >= 18)
+                    if (session.min_age_limit <= 18)
                     {
                         var isYoungAllowed = session.min_age_limit <= 18 ? "YES" : "NO";
                         string buildMessage = $"Slot Available\nPinCode : {session.pincode} | 18+ : {isYoungAllowed} | Address: {session.address} | " +
                             $"Available Capacity: {session.available_capacity}, " +
                             $"Date : {session.date}, Vaccine : {session.vaccine}";
-                        messageRequests.Messages.Add(new Messages("918109729582", buildMessage, Channel.sms, $"{Guid.NewGuid()}"));
-                        messageRequests.Messages.Add(new Messages("919685317178", buildMessage, Channel.sms, $"{Guid.NewGuid()}"));
-                        messageRequests.Messages.Add(new Messages("919340930902", buildMessage, Channel.sms, $"{Guid.NewGuid()}"));
+                        foreach (var number in mobileNumbers)
+                        {
+                            messageRequests.Messages.Add(new Messages(number, buildMessage, Channel.sms, $"{Guid.NewGuid()}"));
+                            //messageRequests.Messages.Add(new Messages("919685317178", buildMessage, Channel.sms, $"{Guid.NewGuid()}"));
+                            //messageRequests.Messages.Add(new Messages("919340930902", buildMessage, Channel.sms, $"{Guid.NewGuid()}"));
+                        }
                     }
                 }
             }
             return messages;
+        }
+
+        private void BuildDates(int days)
+        {
+            int count = 0;
+            nextDates = new List<string>();
+            while (count <= days)
+            {
+                var day = DateTime.Now.Day;
+                day += count;
+                var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, day).ToShortDateString();
+                nextDates.Add(date);
+                count++;            
+            }
         }
     }
 }

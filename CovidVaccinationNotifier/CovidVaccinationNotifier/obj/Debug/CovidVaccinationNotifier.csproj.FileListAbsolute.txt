@@ -12,3 +12,17 @@ C:\Users\yashd\source\repos\CovidVaccinationNotifier\CovidVaccinationNotifier\ob
 C:\Users\yashd\source\repos\CovidVaccinationNotifier\CovidVaccinationNotifier\obj\Debug\CovidVaccinationNotifier.exe
 C:\Users\yashd\source\repos\CovidVaccinationNotifier\CovidVaccinationNotifier\obj\Debug\CovidVaccinationNotifier.pdb
 C:\Users\yashd\source\repos\CovidVaccinationNotifier\CovidVaccinationNotifier\obj\Debug\CovidVaccinationNotifier.csprojAssemblyReference.cache
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\CovidVaccinationNotifier.exe.config
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\CovidVaccinationNotifier.exe
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\CovidVaccinationNotifier.pdb
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\Newtonsoft.Json.dll
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\RestSharp.dll
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\RestSharp.Serializers.Newtonsoft.Json.dll
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\Newtonsoft.Json.xml
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\bin\Debug\RestSharp.xml
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\obj\Debug\CovidVaccinationNotifier.csprojAssemblyReference.cache
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\obj\Debug\CovidVaccinationNotifier.csproj.CoreCompileInputs.cache
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\obj\Debug\CovidVaccinationNotifier.csproj.CopyComplete
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\obj\Debug\CovidVaccinationNotifier.exe
+C:\Users\yashd\source\repos\CowinVaccineSlotNotfier\CovidVaccinationNotifier\CovidVaccinationNotifier\obj\Debug\CovidVaccinationNotifier.pdb

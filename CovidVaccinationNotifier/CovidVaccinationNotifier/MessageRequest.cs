@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CovidVaccinationNotifier
 {
-    public class MessageRequest
+    public class MessageRequest : IDisposable
     {
         public string To { get; set; }
         public string Message { get; set; }
@@ -16,6 +16,11 @@ namespace CovidVaccinationNotifier
         [JsonProperty(PropertyName = "messages")]
         public List<Messages> Messages { get; set; }
 
+        bool disposed;
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
     }
 
     public class Messages

@@ -37,6 +37,10 @@ namespace CovidVaccinationNotifier
             int index = 0;
             int partSize = 10;
             int runCount = requests.Messages.Count / partSize;
+            if (partSize >= requests.Messages.Count)
+            {
+                runCount = 1;
+            }
             while (runCount > 0)
             {
                 var messages = requests.Messages.Skip(index * partSize).Take(partSize);
